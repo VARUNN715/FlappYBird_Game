@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
-public class FlappyBird extends JPanel implements ActionListener, KeyListener{
+public class FlappyBird extends JPanel implements ActionListener, KeyListener, MouseListener{
     int boardWidth = 360;
     int boardHeight = 640;
 
@@ -73,6 +73,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
         //setBackground(Color.blue);
         setFocusable(true);
         addKeyListener(this);
+        addMouseListener(this);
 
         //Load Images
         backgroundImg = new ImageIcon(getClass().getResource("./flappybirdbg.png")).getImage();
@@ -97,7 +98,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
         gameLoop = new Timer(1000/60, this); //1000/60  = 16.6
         gameLoop.start();
 
-
+        requestFocusInWindow();
     }
 
     public void placePipes(){
@@ -206,6 +207,29 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+        
+            System.out.println("mouse clicked");
+            velocityY = -9; // This controls the bird's jump.
+        
+            if (gameOver) {
+                // Restart the game
+                bird.y = birdY;
+                velocityY = 0;
+                pipes.clear();
+                score = 0;
+                gameOver = false;
+                gameLoop.start();
+                placePipesTimer.start();
+            
+        }
+        
+    }
+
+
+
+
+    @Override
     public void keyTyped(KeyEvent e) {
         
     }
@@ -215,4 +239,27 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
         
     }
     
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
+    }
+    
+   
 }

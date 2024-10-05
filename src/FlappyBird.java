@@ -209,11 +209,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener, M
     @Override
     public void mousePressed(MouseEvent e) {
         
-            System.out.println("mouse clicked");
-            velocityY = -9; // This controls the bird's jump.
+            velocityY = -9; 
         
             if (gameOver) {
-                // Restart the game
+                // Restart the game using intial game values
                 bird.y = birdY;
                 velocityY = 0;
                 pipes.clear();
